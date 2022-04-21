@@ -1,0 +1,40 @@
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from "@angular/router";
+import {ErrorPageComponent} from "./shared/error-page/error-page.component";
+
+
+const routes: Routes = [
+  {
+    path: 'auth',
+    //Promesa
+    //Cuando la ruta sea auth carga sus hijos, estos vienen de auth.module y cuando carguen regresara el AuthModule.
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'heroes',
+    loadChildren: () => import('./heroes/heroes.module').then(m => m.HeroesModule)
+  },
+
+  {
+    path: '404',
+    component: ErrorPageComponent
+  },
+  {
+    path: '**',
+    redirectTo: '404'
+  },
+]
+
+@NgModule({
+  declarations: [],
+  exports: [
+    RouterModule
+  ],
+  imports: [
+    RouterModule.forRoot(routes)
+  ]
+})
+export class AppRoutingModule {
+}
+
+
