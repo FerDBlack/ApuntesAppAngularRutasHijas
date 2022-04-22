@@ -1,0 +1,9 @@
+img {
+  position: absolute;
+  max-width: 100%;
+  transition: all ease 1250ms;
+  transform-style: preserve-3d;
+}
+
+
+
